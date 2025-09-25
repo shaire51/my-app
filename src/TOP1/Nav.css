@@ -1,0 +1,90 @@
+/* body */
+.top-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #e7e7e7;
+  color: #000000;
+  height: 80px;
+  padding: 0 20px;
+  font-size: 28px;
+  border-bottom: #000000 solid 1px;
+}
+
+/* lift */
+.start {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.start img {
+  height: 60px;
+  cursor: pointer;
+}
+
+/* nav */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+}
+.nav-item {
+  position: relative;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+.nav-item:hover {
+  background: #9e9e9eb9;
+  border: solid 1px;
+}
+
+.meeting {
+  font-size: 24px;
+}
+
+/* 下拉選單 */
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: -10px;
+  background: #ffffff;
+  color: #000000;
+  min-width: 150px;
+  border-radius: 15px;
+  box-shadow: 0 8px 18px rgba(1, 5, 5, 0.18);
+  padding: 10px;
+  z-index: 1000;
+  border: 1px solid;
+
+  /* 隱藏 + 動畫 */
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.18s ease, transform 0.18s ease, max-height 0.25s ease;
+}
+
+/* 下拉選單項目 */
+.submenu a {
+  display: block;
+  padding: 10px 30px;
+  text-decoration: none;
+  color: #222;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.submenu a:hover {
+  background: #f5f6f7;
+}
+
+/* hover 在父層時展開 */
+.dropdown:hover .submenu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  max-height: 300px;
+}
