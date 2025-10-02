@@ -86,6 +86,8 @@ body {
   min-width: 920px; /* 避免過窄擠壓 */
   border-collapse: collapse;
   table-layout: fixed; /* 配合指定欄寬更穩定 */
+  white-space: normal; /* 允許換行 */
+  word-break: break-word; /* 單字太長就斷行 */
 }
 
 /* 表頭固定在頂部 */
@@ -110,21 +112,24 @@ body {
 }
 
 /* 條紋 + 懸停 */
-.borderrr tbody tr:nth-child(even) {
-  background: #fcfcfc;
-}
 .borderrr tbody tr:hover {
   background: var(--hover);
 }
 
 /* 指定欄位寬度與換行策略（依你的欄位順序調整）*/
+
+.borderrr td {
+  white-space: normal;
+  word-break: break-word;
+}
 .borderrr th:nth-child(1),
 .borderrr td:nth-child(1) {
   width: 18ch;
+  padding-left: 24px;
 }
 .borderrr th:nth-child(2),
 .borderrr td:nth-child(2) {
-  width: 12ch;
+  width: 14ch;
   white-space: nowrap;
 }
 .borderrr th:nth-child(3),
@@ -151,7 +156,6 @@ body {
 .borderrr th:nth-child(7),
 .borderrr td:nth-child(7) {
   width: 12ch;
-  white-space: nowrap;
 } /* 文件上傳欄 */
 
 /* 省略號工具：加入 .ellipsis class 到需要單行的 <td> */
@@ -220,6 +224,8 @@ body {
   .table-wrap {
     order: 1;
     max-height: unset;
+    overflow-x: auto; /* 水平超出時出卷軸，不讓內容飛出去 */
+    overflow-y: auto;
   }
 }
 

@@ -1,3 +1,3 @@
 export default function Reserver() {
-  <div>coming...soon</div>;
+  return <div>coming...soon</div>;
 }
