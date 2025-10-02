@@ -1,17 +1,282 @@
+/* === 基礎設計系統 === */
+:root {
+  --brand: #e53935; /* 企業紅，可依你的Logo微調 */
+  --ink: #333;
+  --muted: #777;
+  --line: #ddd;
+  --bg: #f7f7f7;
+  --table-head: #efefef;
+  --hover: #fafafa;
+  --card: #fff;
+
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* 全域微調 */
+* {
+  box-sizing: border-box;
+}
+body {
+  color: var(--ink);
+  background: var(--bg);
+}
+
+/* 頂部列（若有） */
+.topbar {
+  background: #9e9e9e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 16px;
+}
+.topbar .time {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+/* 主要版心：左表格 + 右資訊卡 */
+.board {
+  display: grid;
+  grid-template-columns: 1fr 320px; /* 右欄固定寬 */
+  gap: 16px;
+  padding: 12px 16px 20px;
+}
+
+/* 右側資訊卡 */
+.sidebar {
+  position: sticky;
+  top: 8px;
+  align-self: start;
+}
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.3;
+}
+.meta {
+  font-size: 14px;
+  color: var(--muted);
+  display: grid;
+  row-gap: 6px;
+}
+.meta strong {
+  color: var(--ink);
+}
+
+/* 表格外框，可捲動容器 */
+.table-wrap {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: auto; /* 讓寬度不夠時能橫向捲動 */
+  max-height: calc(100vh - 140px); /* 視窗高度內可捲動 */
+}
+
+/* 表格本體 */
 .borderrr {
   width: 100%;
+  min-width: 920px; /* 避免過窄擠壓 */
   border-collapse: collapse;
+  table-layout: fixed; /* 配合指定欄寬更穩定 */
 }
 
-.borderrr th,
-.borderrr td {
-  border: 2px solid #333;
-  padding: 15px 30px;
-  text-align: center;
-  vertical-align: middle;
-}
-
+/* 表頭固定在頂部 */
 .borderrr thead th {
-  background-color: #f2f2f2;
-  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--table-head);
+  color: #222;
+  text-align: left;
+  font-weight: 700;
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px;
+}
+
+/* 表身 */
+.borderrr tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  font-size: 15px;
+}
+
+/* 條紋 + 懸停 */
+.borderrr tbody tr:nth-child(even) {
+  background: #fcfcfc;
+}
+.borderrr tbody tr:hover {
+  background: var(--hover);
+}
+
+/* 指定欄位寬度與換行策略（依你的欄位順序調整）*/
+.borderrr th:nth-child(1),
+.borderrr td:nth-child(1) {
+  width: 18ch;
+}
+.borderrr th:nth-child(2),
+.borderrr td:nth-child(2) {
+  width: 12ch;
+  white-space: nowrap;
+}
+.borderrr th:nth-child(3),
+.borderrr td:nth-child(3) {
+  width: 14ch;
+  white-space: nowrap;
+}
+.borderrr th:nth-child(4),
+.borderrr td:nth-child(4) {
+  width: 12ch;
+  white-space: nowrap;
+}
+.borderrr th:nth-child(5),
+.borderrr td:nth-child(5) {
+  /* 參加人員 */
+  width: auto; /* 彈性欄，允許換行 */
+  word-break: break-word;
+}
+.borderrr th:nth-child(6),
+.borderrr td:nth-child(6) {
+  width: 14ch;
+  white-space: nowrap;
+}
+.borderrr th:nth-child(7),
+.borderrr td:nth-child(7) {
+  width: 12ch;
+  white-space: nowrap;
+} /* 文件上傳欄 */
+
+/* 省略號工具：加入 .ellipsis class 到需要單行的 <td> */
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 客製「文件上傳」按鈕 */
+.upload-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.input-file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.btn-upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.05s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.25);
+}
+.btn-upload:hover {
+  transform: translateY(-1px);
+}
+.btn-upload:active {
+  transform: translateY(0);
+}
+
+/* 小字提示 */
+.hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* RWD：右欄先縮，再落到下方 */
+@media (max-width: 1200px) {
+  .board {
+    grid-template-columns: 1fr 280px;
+  }
+}
+@media (max-width: 900px) {
+  .board {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    order: 2;
+  } /* 右欄移到下方 */
+  .table-wrap {
+    order: 1;
+    max-height: unset;
+  }
+}
+
+/* 你原本的 .borderrr 可保留；這裡補上上傳相關樣式 */
+.upload-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.input-file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.btn-upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #e53935;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.25);
+  transition: transform 0.05s ease, box-shadow 0.2s ease;
+}
+.btn-upload:hover {
+  transform: translateY(-1px);
+}
+.btn-upload:active {
+  transform: translateY(0);
+}
+
+.file-name {
+  font-size: 13px;
+  color: #444;
+}
+.hint {
+  font-size: 12px;
+  color: #777;
+}
+.hint.error {
+  color: #d32f2f;
+}
+
+.thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
 }
