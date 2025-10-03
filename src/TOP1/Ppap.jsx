@@ -9,6 +9,7 @@ const ppap = [
     date: "2025-09-23",
     time: "09:30~12:00",
     people: "新進人員",
+    where: "文川",
     place: "五樓會議室",
   },
   {
@@ -18,6 +19,7 @@ const ppap = [
     date: "2025-09-24",
     time: "13:30~14:30",
     people: "test / test / test",
+    where: "文川",
     place: "test",
   },
   // 這筆日期/時間有非數字字元，之後要進一步使用前可先清理或驗證
@@ -28,15 +30,14 @@ const ppap = [
     date: "2025a-09-24",
     time: "13:30a~14:30",
     people: "testa / test / test",
+    where: "文川",
     place: "testa",
   },
 ];
 
 export default function Ppap() {
-  // 以 id 作為 key，存每列上傳狀態
-  const [uploads, setUploads] = useState({}); // { [id]: { file, url, error } }
+  const [uploads, setUploads] = useState({});
 
-  // 避免 URL 泄漏：元件卸載時釋放
   useEffect(() => {
     return () => {
       Object.values(uploads).forEach(
@@ -49,7 +50,7 @@ export default function Ppap() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // 前端驗證：副檔名/型別 + 檔案大小
+    // 副檔名 + 檔案大小
     const allowed = [
       "application/pdf",
       "image/png",
@@ -94,6 +95,7 @@ export default function Ppap() {
           <th>日期</th>
           <th>時間</th>
           <th>參加人員</th>
+          <th>提報人</th>
           <th>地點</th>
           <th>檔案上傳</th>
         </tr>
@@ -108,6 +110,7 @@ export default function Ppap() {
               <td>{item.date}</td>
               <td>{item.time}</td>
               <td>{item.people}</td>
+              <td>{item.where}</td>
               <td>{item.place}</td>
               <td>
                 <div className="upload-cell">

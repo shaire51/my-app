@@ -105,10 +105,10 @@ body {
 
 /* 表身 */
 .borderrr tbody td {
-  padding: 10px 12px;
+  padding: 12px 12px;
   border-bottom: 1px solid var(--line);
   vertical-align: top;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 /* 條紋 + 懸停 */
@@ -150,11 +150,15 @@ body {
 }
 .borderrr th:nth-child(6),
 .borderrr td:nth-child(6) {
-  width: 14ch;
+  width: 12ch;
   white-space: nowrap;
 }
 .borderrr th:nth-child(7),
 .borderrr td:nth-child(7) {
+  width: 12ch;
+}
+.borderrr th:nth-child(8),
+.borderrr td:nth-child(8) {
   width: 12ch;
 } /* 文件上傳欄 */
 
@@ -285,4 +289,13 @@ body {
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid #e6e6e6;
+}
+
+.table-wrap {
+  text-align: initial; /* 先把外層的對齊重設，避免繼承 */
+}
+
+.borderrr th,
+.borderrr td {
+  text-align: left !important; /* 明確指定靠左 */
 }

@@ -9,6 +9,7 @@ export default function App() {
       <Nav />
       <Routes>
         <Route path="/body" element={<Body />} />
+        <Route path="" element={<Body />} />
         <Route path="/reserve" element={<Reserver />} />
       </Routes>
     </div>
