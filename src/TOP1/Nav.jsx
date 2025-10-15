@@ -7,14 +7,14 @@ export default function Top() {
     <div className="top-container">
       <div className="start">
         <nav className="nav">
-          <NavLink to="/body">
+          <NavLink to="/">
             <img src="/AA.png" alt="回首頁" />
           </NavLink>
 
           <div className="nav-item dropdown">
             <span className="meeting">會議功能</span>
             <div className="submenu">
-              <NavLink to="/body">本日會議</NavLink>
+              <NavLink to="/">本日會議</NavLink>
               <NavLink to="/reserve">新增會議</NavLink>
               <NavLink to="/">查詢會議</NavLink>
             </div>

@@ -8,7 +8,6 @@ export default function App() {
     <div>
       <Nav />
       <Routes>
-        <Route path="/body" element={<Body />} />
         <Route path="" element={<Body />} />
         <Route path="/reserve" element={<Reserver />} />
       </Routes>

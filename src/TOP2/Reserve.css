@@ -2,10 +2,14 @@ body {
   background-color: #f3f4f6;
 }
 
+:root {
+  --offsetY: 90px; /* 想下移多少就改這裡；要更靠上就改小 */
+}
+
 .form-container {
   background: #fff;
-  max-width: 800px;
-  margin: auto;
+  max-width: 850px;
+  margin: var(--offsetY) auto 64px;
   padding: 30px 40px;
   border-radius: 14px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
